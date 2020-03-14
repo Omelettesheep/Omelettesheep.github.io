@@ -296,7 +296,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-14 21:16:21 / 修改时间：21:17:56" itemprop="dateCreated datePublished" datetime="2020-03-14T21:16:21+08:00">2020-03-14</time>
+              <time title="创建时间：2020-03-14 21:16:21 / 修改时间：23:52:09" itemprop="dateCreated datePublished" datetime="2020-03-14T21:16:21+08:00">2020-03-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,9 +323,57 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="HTTPS相关"><a href="#HTTPS相关" class="headerlink" title="HTTPS相关"></a>HTTPS相关</h2><blockquote>
-<p>先放个文档，稍后更新</p>
-</blockquote>
+          <h2 id="HTTP的缺点"><a href="#HTTP的缺点" class="headerlink" title="HTTP的缺点"></a>HTTP的缺点</h2><ol>
+<li>明文传输，信息易被截取</li>
+<li>发送和接收方不会验证报文完整和一致性</li>
+<li>互相不会验证对方身份</li>
+</ol>
+<h2 id="HTTPS做了什么"><a href="#HTTPS做了什么" class="headerlink" title="HTTPS做了什么"></a>HTTPS做了什么</h2><ol>
+<li>数据加密传输</li>
+<li>数据一致性</li>
+<li>身份认证</li>
+</ol>
+<h2 id="HTTPS是怎么做到的"><a href="#HTTPS是怎么做到的" class="headerlink" title="HTTPS是怎么做到的"></a>HTTPS是怎么做到的</h2><p>HTTPS = SSL(TSL) + HTTP</p>
+<p>即：在http和tcp之间添加了一层SSL安全层，SSL来负责安全部分，内核仍然是http。</p>
+<p>tips: https默认端口号443，http默认端口号80</p>
+<h2 id="SSL（TSL）是怎么做到的"><a href="#SSL（TSL）是怎么做到的" class="headerlink" title="SSL（TSL）是怎么做到的"></a>SSL（TSL）是怎么做到的</h2><ol>
+<li>数据加密传输</li>
+</ol>
+<ul>
+<li><p>对称加密和非对称加密 </p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th align="center">对称加密</th>
+<th align="center">非对称加密</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定义</td>
+<td align="center">服务端和客户端加密解密使用相同密钥</td>
+<td align="center">客户端使用公钥进行信息加密，服务端使用独有的密钥进行解密</td>
+</tr>
+<tr>
+<td>优点</td>
+<td align="center">速度快</td>
+<td align="center">安全性高</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td align="center">密钥会在客户端和服务端之间传输，密钥可能会被拦截，有安全漏洞</td>
+<td align="center">加密算法复杂，加密速度慢</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>SSL的数据加密方式——混合加密</p>
+<p>综上表格优缺点，SSL采用对称加密和非对称加密结合的混合加密——<strong>数据传输采用对称加密，对对称加密的密钥采用非对称加密</strong><br>（未完待续）</p>
+</li>
+<li><p>数据一致性</p>
+</li>
+<li><p>身份认证</p>
+</li>
+</ul>
 
       
     </div>
