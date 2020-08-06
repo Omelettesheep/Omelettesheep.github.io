@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Spin组件</title>
+      <link href="/2020/08/06/antd%E6%BA%90%E7%A0%81-spin%E7%BB%84%E4%BB%B6/"/>
+      <url>/2020/08/06/antd%E6%BA%90%E7%A0%81-spin%E7%BB%84%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>antd源码解读之spin组件</p></blockquote><a id="more"></a><h2 id="Spin组件"><a href="#Spin组件" class="headerlink" title="Spin组件"></a>Spin组件</h2><h3 id="一、基本使用"><a href="#一、基本使用" class="headerlink" title="一、基本使用"></a>一、基本使用</h3><p><a href="https://ant-design.gitee.io/components/spin-cn/" target="_blank" rel="noopener" title="antd-spin">Spin加载中</a></p><h3 id="二、目录结构"><a href="#二、目录结构" class="headerlink" title="二、目录结构"></a>二、目录结构</h3><p><img src="https://pic.rmb.bdstatic.com/bjh/fd1b42827221088a5b9fe02b6cb2d54e.png" alt="目录结构" title="目录结构"></p><h3 id="三、代码解读"><a href="#三、代码解读" class="headerlink" title="三、代码解读"></a>三、代码解读</h3><h4 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h4><p><img src="https://pic.rmb.bdstatic.com/bjh/834f6fcecd4c25e94003f53e0768b516.png" alt="代码整体结构" title="代码整体结构"></p><h4 id="引入文件"><a href="#引入文件" class="headerlink" title="引入文件"></a>引入文件</h4><ul><li><p><strong>classnames：动态控制类名</strong></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">classNames(<span class="string">'foo'</span>, <span class="string">'bar'</span>); <span class="comment">// =&gt; 'foo bar'</span></span><br><span class="line">classNames(<span class="string">'foo'</span>, &#123; <span class="attr">bar</span>: <span class="literal">true</span> &#125;); <span class="comment">// =&gt; 'foo bar'</span></span><br><span class="line">classNames(&#123; <span class="string">'foo-bar'</span>: <span class="literal">true</span> &#125;); <span class="comment">// =&gt; 'foo-bar'</span></span><br><span class="line">classNames(&#123; <span class="string">'foo-bar'</span>: <span class="literal">false</span> &#125;); <span class="comment">// =&gt; ''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'b'</span>, &#123; <span class="attr">c</span>: <span class="literal">true</span>, <span class="attr">d</span>: <span class="literal">false</span> &#125;];</span><br><span class="line">classNames(<span class="string">'a'</span>, arr); <span class="comment">// =&gt; 'a b c'</span></span><br></pre></td></tr></table></figure></li><li><p><strong>omit.js：从已经存在的对象中过滤特定属性</strong></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">omit(&#123; <span class="attr">name</span>: <span class="string">'Benjy'</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;, [ <span class="string">'name'</span> ]); <span class="comment">// =&gt; &#123; age: 18 &#125;</span></span><br></pre></td></tr></table></figure></li><li><p><strong>ConfigConsumer, ConfigComsumerProps</strong></p><blockquote><p>来自<span class="label primary">configProvider</span>组件</p></blockquote><p>  一个默认的全局Consumer，用户可通过传ConfigProvider修改context中的值，此处用ConfigConsumer将组件包一层，用于接收context</p></li><li><p><strong>isValidElement</strong></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断参数是否一个合法的 ReactElement，并返回 Boolean 值</span></span><br><span class="line"><span class="keyword">const</span> &#123;isValidElement&#125; = React;</span><br></pre></td></tr></table></figure></li><li><p><strong>cloneElement</strong></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">return</span> React.cloneElement(element, <span class="keyword">typeof</span> props === <span class="string">'function'</span> ? props() : props);</span><br></pre></td></tr></table></figure></li></ul><h4 id="类型定义"><a href="#类型定义" class="headerlink" title="类型定义"></a>类型定义</h4><ul><li><strong>SpinSizes、SpinSize</strong><figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> tuple = &lt;T <span class="keyword">extends</span> <span class="built_in">string</span>[]&gt;<span class="function">(<span class="params">...args: T</span>)=&gt;</span> args;</span><br><span class="line"><span class="keyword">const</span> SpinSizes = tuple(<span class="string">'small'</span>, <span class="string">'default'</span>, <span class="string">'large'</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> SpinSize = <span class="keyword">typeof</span> SpinSizes[<span class="built_in">number</span>]</span><br><span class="line">;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等于</span></span><br><span class="line"><span class="keyword">type</span> SpinSizesType = <span class="string">'small'</span> | <span class="string">'default'</span> | <span class="string">'large'</span></span><br><span class="line"><span class="keyword">const</span> SpinSizes: SpinSizesType[] = [<span class="string">'small'</span>, <span class="string">'default'</span>, <span class="string">'large'</span>]</span><br></pre></td></tr></table></figure></li></ul><h4 id="变量-amp-函数定义"><a href="#变量-amp-函数定义" class="headerlink" title="变量&amp;函数定义"></a>变量&amp;函数定义</h4><ul><li>defaultIndicator：默认小菊花样式</li><li>renderIndicator：渲染小菊花</li><li>shouldDelay：初始化时是否spinning</li></ul><h4 id="组件编写"><a href="#组件编写" class="headerlink" title="组件编写"></a>组件编写</h4><ul><li><p>整体结构<br><img src="https://pic.rmb.bdstatic.com/bjh/b783dcc7af893157a4d9396bf000b284.png@s_0,w_1242" alt="变量&amp;函数定义" title="变量&amp;函数定义"></p></li><li><p>状态处理（spinning)</p><ul><li><p>状态更新函数<br><img src="https://pic.rmb.bdstatic.com/bjh/faf7f390723096012ace65352800bc0a.png" alt="状态处理函数" title="状态处理函数"></p></li><li><p>给状态更新函数加上debounce，处理delay<br><img src="https://pic.rmb.bdstatic.com/bjh/a6696831d7129557dec642fcbefb783b.png" alt="加上debounce处理delay" title="加上debounce处理delay"></p></li><li><p>触发状态更新的时间点<br><img src="https://pic.rmb.bdstatic.com/bjh/6cf30cce8f67a87ef8c4438cfa83f835.png" alt="触发状态处理" title="触发状态处理"></p></li></ul></li><li><p>组件渲染</p><ul><li>获取组件前缀</li><li>获取组件classnames</li><li>根据是否有children渲染不同的dom结构<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">isNestedPattern() <span class="comment">// 判断是否有children</span></span><br><span class="line"></span><br><span class="line">renderIndicator() <span class="comment">// render小菊花</span></span><br><span class="line"></span><br><span class="line">renderSpin() <span class="comment">// render组件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用configConsumer包一层，能接受ConfigProvider传来的context变量</span></span><br><span class="line">&lt;ConfigConsumer&gt;&#123;<span class="keyword">this</span>.renderSpin&#125;&lt;<span class="regexp">/ConfigConsumer&gt;;</span></span><br></pre></td></tr></table></figure></li></ul></li></ul><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul><li><p>提供方法允许全局修改默认小菊花样式</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> setDefaultIndicator(indicator: React.ReactNode) &#123;</span><br><span class="line">    defaultIndicator = indicator;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Spin <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line">Spin.setDefaultIndicator(<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br></pre></td></tr></table></figure></li><li><p>使用consumer能让组件接收到全局参数</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 组件中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ConfigConsumer</span>&gt;</span>&#123;this.renderSpin&#125;<span class="tag">&lt;/<span class="name">ConfigConsumer</span>&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 外层 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ConfigProvider</span> <span class="attr">prefixCls</span>=<span class="string">"bjh"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">MySpin</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ConfigProvider</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ul><h3 id="四、CSS"><a href="#四、CSS" class="headerlink" title="四、CSS"></a>四、CSS</h3><ul><li><p>最外层用项目前缀+组件前缀最为类名</p></li><li><p>小菊花的实现（4个花瓣的颜色渐变+整个小菊花的旋转）</p><ul><li><p>每个小花瓣渐变色动画<br><img src="https://pic.rmb.bdstatic.com/bjh/456f5d4cd14321d384d838791119e802.png" alt="每个小花瓣渐变色动画" title="每个小花瓣渐变色动画"><br><img src="https://pic.rmb.bdstatic.com/bjh/9226bdee725d312b17baabf65fe7eb5a.png" alt="每个小花瓣渐变色动画" title="每个小花瓣渐变色动画"></p></li><li><p>整体小菊花旋转动画<br><img src="https://pic.rmb.bdstatic.com/bjh/5057a08312d4a634849cdcd7a3c7e41e.png" alt="整体小菊花旋转动画" title="整体小菊花旋转动画"><br><img src="https://pic.rmb.bdstatic.com/bjh/9226bdee725d312b17baabf65fe7eb5a.png" alt="整体小菊花旋转动画" title="整体小菊花旋转动画"></p></li></ul></li></ul><h3 id="五、单测"><a href="#五、单测" class="headerlink" title="五、单测"></a>五、单测</h3><ol><li><code>mountTest</code>：测试组件的正常mount、update和unmount</li><li><code>describe</code>：测试套件，<code>it</code>：测试用例</li><li><code>mount()</code>：将React组件加载为真实DOM节点。mount会渲染当前组件以及所有子组件</li><li><code>toBeFalsy</code>：六个falsy值：false，0，’’，null， undefined，和NaN</li><li><code>render()</code>：render 采用的是第三方库Cheerio的渲染，渲染结果是普通的html结构，对于snapshot使用render比较合适。</li><li><code>toMatchSnapshot()</code>：跟快照一致</li><li><code>instance()</code>：获取组件的实例，和state结合可用来拿内部状态</li></ol><h3 id="六、其他"><a href="#六、其他" class="headerlink" title="六、其他"></a>六、其他</h3><h4 id="omit的实现"><a href="#omit的实现" class="headerlink" title="omit的实现"></a>omit的实现</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">omit</span>(<span class="params">obj, fields</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// eslint-disable-next-line prefer-object-spread</span></span><br><span class="line">  <span class="keyword">const</span> shallowCopy = <span class="built_in">Object</span>.assign(&#123;&#125;, obj);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; fields.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> key = fields[i];</span><br><span class="line">    <span class="keyword">delete</span> shallowCopy[key];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> shallowCopy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> omit;</span><br></pre></td></tr></table></figure><h4 id="isValidReactElement"><a href="#isValidReactElement" class="headerlink" title="isValidReactElement"></a>isValidReactElement</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> antd </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>React Hook</title>
       <link href="/2020/05/22/React%20Hook/"/>
       <url>/2020/05/22/React%20Hook/</url>
@@ -13,8 +40,6 @@
       
       <categories>
           
-          <category> 每日学习 </category>
-          
           <category> 前端 </category>
           
       </categories>
@@ -22,9 +47,9 @@
       
         <tags>
             
-            <tag> react </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> react </tag>
             
         </tags>
       
@@ -41,8 +66,6 @@
       
       
       <categories>
-          
-          <category> 每日学习 </category>
           
           <category> 前端 </category>
           
@@ -62,87 +85,6 @@
     
     
     <entry>
-      <title>运动日记(持续更新)</title>
-      <link href="/2020/03/16/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
-      <url>/2020/03/16/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>准备建个页专门用来存运动情况，每天开一个太浪费了。【更新至3.17】</p></blockquote><a id="more"></a><p>3.16：今天偷懒了，只练了<a href="https://www.bilibili.com/video/av50314054?p=3" target="_blank" rel="noopener">美丽芭蕾的瘦腿第三套</a>。今天是周一，明显感觉时间不够用，白天和晚上都有很多工作，准备把早上的时间利用起来，每天早上练习20分钟的体态训练吧，加油。</p><p>3.17 腰部+手臂+hiit燃脂+肩颈拉伸</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 习惯养成计划 </category>
-          
-          <category> 运动 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 运动 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>运动日记(四)</title>
-      <link href="/2020/03/15/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E5%9B%9B/"/>
-      <url>/2020/03/15/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E5%9B%9B/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>【3月15日】 背部、肩部、舒缓运动</p></blockquote><a id="more"></a><p>最近身体状态比较特殊啦，多以舒缓和上身小运动为主！希望可以坚持下来！fighting！</p><p>一组背部运动<a href="https://www.bilibili.com/video/av88812230" target="_blank" rel="noopener">B站美背大法-坚持4天</a></p><p>一组手臂运动<a href="https://www.bilibili.com/video/av90866754" target="_blank" rel="noopener">B站手臂运动-坚持4天</a></p><p>一组肩背手臂拉伸<a href="https://www.bilibili.com/video/av92672384" target="_blank" rel="noopener">8分钟改善【斜方肌肥厚】拉伸打造-坚持3天</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 习惯养成计划 </category>
-          
-          <category> 运动 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 运动 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>运动日记(三)</title>
-      <link href="/2020/03/14/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E4%B8%89/"/>
-      <url>/2020/03/14/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E4%B8%89/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>【3月14日】 背部、肩部、手臂</p></blockquote><a id="more"></a><p>最近身体状态比较特殊啦，多以舒缓和上身小运动为主！希望可以坚持下来！fighting！</p><p>一组背部运动<a href="https://www.bilibili.com/video/av88812230" target="_blank" rel="noopener">B站美背大法-坚持3天</a></p><p>一组手臂运动<a href="https://www.bilibili.com/video/av90866754" target="_blank" rel="noopener">B站手臂运动-坚持3天</a></p><p>一组肩部运动<a href="https://www.bilibili.com/video/av92583471" target="_blank" rel="noopener">甩掉斜方肌-坚持1天</a></p><p>一组肩背手臂拉伸<a href="https://www.bilibili.com/video/av92672384" target="_blank" rel="noopener">8分钟改善【斜方肌肥厚】拉伸打造-坚持2天</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 习惯养成计划 </category>
-          
-          <category> 运动 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 运动 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>https相关</title>
       <link href="/2020/03/14/https%E7%9B%B8%E5%85%B3/"/>
       <url>/2020/03/14/https%E7%9B%B8%E5%85%B3/</url>
@@ -151,8 +93,6 @@
       
       
       <categories>
-          
-          <category> 每日学习 </category>
           
           <category> 前端 </category>
           
@@ -164,60 +104,6 @@
             <tag> 前端 </tag>
             
             <tag> http </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>运动日记(二)</title>
-      <link href="/2020/03/13/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E4%BA%8C/"/>
-      <url>/2020/03/13/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E4%BA%8C/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>【3月13日】 背部、手臂、肩颈拉伸</p></blockquote><a id="more"></a><p>最近身体状态比较特殊啦，多以舒缓和上身小运动为主！希望可以坚持下来！fighting！</p><p>一组背部运动<a href="https://www.bilibili.com/video/av88812230" target="_blank" rel="noopener">B站美背大法-坚持2天</a></p><p>一组手臂运动<a href="https://www.bilibili.com/video/av90866754" target="_blank" rel="noopener">B站手臂运动-坚持2天</a></p><p>一组肩背手臂拉伸<a href="https://www.bilibili.com/video/av92672384" target="_blank" rel="noopener">8分钟改善【斜方肌肥厚】拉伸打造-坚持1天</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 习惯养成计划 </category>
-          
-          <category> 运动 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 运动 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>运动日记(一)</title>
-      <link href="/2020/03/12/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E4%B8%80/"/>
-      <url>/2020/03/12/%E8%BF%90%E5%8A%A8%E6%97%A5%E8%AE%B0-%E4%B8%80/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>【3月12日】 背部、肩部、手臂</p></blockquote><a id="more"></a><p>最近身体状态比较特殊啦，多以舒缓和上身小运动为主！希望可以坚持下来！fighting！</p><p>一组肩部和背部热身 <a href="https://www.bilibili.com/video/av24009054" target="_blank" rel="noopener">B站美丽芭蕾-累计1天</a></p><p>一组背部运动<a href="https://www.bilibili.com/video/av88812230" target="_blank" rel="noopener">B站美背大法-坚持1天</a></p><p>一组手臂运动<a href="https://www.bilibili.com/video/av90866754" target="_blank" rel="noopener">B站手臂运动-坚持1天</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 习惯养成计划 </category>
-          
-          <category> 运动 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 运动 </tag>
             
         </tags>
       

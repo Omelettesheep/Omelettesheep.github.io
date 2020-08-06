@@ -1216,7 +1216,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d0fe50;
+  background: #c6f6ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2688,11 +2688,14 @@ ul.breadcrumb li + li:last-child {
   }
 }
 body {
+  font-family: 'Noto Serif SC', "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #000;
   background: url("/images/bg-2.webp");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: 50% 50%;
+  font-family: 'Noto Serif SC', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .header-inner {
   border-radius: 20px;
@@ -2706,4 +2709,20 @@ body {
 }
 .popup {
   opacity: 0.9;
+}
+.post-body {
+  font-family: 'Noto Serif SC', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.post-body a:not(.btn) {
+  color: #5073b8;
+  border-bottom: none;
+  text-decoration: none;
+}
+.post-body a:not(.btn):hover {
+  color: #5073b8;
+  border-bottom: 1px solid #5073b8;
+}
+.post-body h3 {
+  font-family: 'Noto Serif SC', "PingFang SC", "Microsoft YaHei", sans-serif;
+  border-bottom: 1px solid #eee;
 }
