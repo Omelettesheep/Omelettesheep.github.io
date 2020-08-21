@@ -33,15 +33,16 @@
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/faf7f390723096012ace65352800bc0a.png">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/a6696831d7129557dec642fcbefb783b.png">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/6cf30cce8f67a87ef8c4438cfa83f835.png">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c28f95ce26e14e718b201a9421667e51.png">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/456f5d4cd14321d384d838791119e802.png">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/9226bdee725d312b17baabf65fe7eb5a.png">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/5057a08312d4a634849cdcd7a3c7e41e.png">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/9226bdee725d312b17baabf65fe7eb5a.png">
 <meta property="article:published_time" content="2020-08-06T13:16:21.000Z">
-<meta property="article:modified_time" content="2020-08-06T09:41:33.914Z">
+<meta property="article:modified_time" content="2020-08-07T07:37:34.144Z">
 <meta property="article:author" content="羊一">
-<meta property="article:tag" content="antd">
 <meta property="article:tag" content="前端">
+<meta property="article:tag" content="antd">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/fd1b42827221088a5b9fe02b6cb2d54e.png">
 
@@ -227,10 +228,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-06 21:16:21 / 修改时间：17:41:33" itemprop="dateCreated datePublished" datetime="2020-08-06T21:16:21+08:00">2020-08-06</time>
+              <time title="创建时间：2020-08-06 21:16:21" itemprop="dateCreated datePublished" datetime="2020-08-06T21:16:21+08:00">2020-08-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-07 15:37:34" itemprop="dateModified" datetime="2020-08-07T15:37:34+08:00">2020-08-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -273,7 +280,7 @@
 <p>  一个默认的全局Consumer，用户可通过传ConfigProvider修改context中的值，此处用ConfigConsumer将组件包一层，用于接收context</p>
 </li>
 <li><p><strong>isValidElement</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断参数是否一个合法的 ReactElement，并返回 Boolean 值</span></span><br><span class="line"><span class="keyword">const</span> &#123;isValidElement&#125; = React;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断参数是否一个合法的 ReactElement，并返回 Boolean 值</span></span><br><span class="line"><span class="keyword">const</span> &#123;isValidElement&#125; = React;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class A &#123;&#125;</span></span><br><span class="line"><span class="comment">// const A = () =&gt; &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;A /&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>cloneElement</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">return</span> React.cloneElement(element, <span class="keyword">typeof</span> props === <span class="string">'function'</span> ? props() : props);</span><br></pre></td></tr></table></figure>
@@ -325,7 +332,10 @@
 </ul>
 <h3 id="四、CSS"><a href="#四、CSS" class="headerlink" title="四、CSS"></a>四、CSS</h3><ul>
 <li><p>最外层用项目前缀+组件前缀最为类名</p>
+<p>  <img src="https://pic.rmb.bdstatic.com/bjh/c28f95ce26e14e718b201a9421667e51.png" alt="组件前缀" title="组件前缀"></p>
 </li>
+</ul>
+<ul>
 <li><p>小菊花的实现（4个花瓣的颜色渐变+整个小菊花的旋转）</p>
 <ul>
 <li><p>每个小花瓣渐变色动画<br><img src="https://pic.rmb.bdstatic.com/bjh/456f5d4cd14321d384d838791119e802.png" alt="每个小花瓣渐变色动画" title="每个小花瓣渐变色动画"><br><img src="https://pic.rmb.bdstatic.com/bjh/9226bdee725d312b17baabf65fe7eb5a.png" alt="每个小花瓣渐变色动画" title="每个小花瓣渐变色动画"></p>
@@ -345,7 +355,7 @@
 <li><code>instance()</code>：获取组件的实例，和state结合可用来拿内部状态</li>
 </ol>
 <h3 id="六、其他"><a href="#六、其他" class="headerlink" title="六、其他"></a>六、其他</h3><h4 id="omit的实现"><a href="#omit的实现" class="headerlink" title="omit的实现"></a>omit的实现</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">omit</span>(<span class="params">obj, fields</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// eslint-disable-next-line prefer-object-spread</span></span><br><span class="line">  <span class="keyword">const</span> shallowCopy = <span class="built_in">Object</span>.assign(&#123;&#125;, obj);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; fields.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> key = fields[i];</span><br><span class="line">    <span class="keyword">delete</span> shallowCopy[key];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> shallowCopy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> omit;</span><br></pre></td></tr></table></figure>
-<h4 id="isValidReactElement"><a href="#isValidReactElement" class="headerlink" title="isValidReactElement"></a>isValidReactElement</h4>
+
     </div>
 
     
@@ -371,8 +381,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/antd/" rel="tag"># antd</a>
               <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/antd/" rel="tag"># antd</a>
           </div>
 
         
@@ -384,7 +394,10 @@
     <a href="/2020/05/22/React%20Hook/" rel="prev" title="React Hook">
       <i class="fa fa-chevron-left"></i> React Hook
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/11/reflect/" rel="next" title="Reflect">
+      Reflect <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -444,7 +457,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spin组件"><span class="nav-number">1.</span> <span class="nav-text">Spin组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">一、基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、目录结构"><span class="nav-number">1.2.</span> <span class="nav-text">二、目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、代码解读"><span class="nav-number">1.3.</span> <span class="nav-text">三、代码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">整体结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引入文件"><span class="nav-number">1.3.2.</span> <span class="nav-text">引入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型定义"><span class="nav-number">1.3.3.</span> <span class="nav-text">类型定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量-amp-函数定义"><span class="nav-number">1.3.4.</span> <span class="nav-text">变量&amp;函数定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件编写"><span class="nav-number">1.3.5.</span> <span class="nav-text">组件编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">1.3.6.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、CSS"><span class="nav-number">1.4.</span> <span class="nav-text">四、CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、单测"><span class="nav-number">1.5.</span> <span class="nav-text">五、单测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、其他"><span class="nav-number">1.6.</span> <span class="nav-text">六、其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#omit的实现"><span class="nav-number">1.6.1.</span> <span class="nav-text">omit的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isValidReactElement"><span class="nav-number">1.6.2.</span> <span class="nav-text">isValidReactElement</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spin组件"><span class="nav-number">1.</span> <span class="nav-text">Spin组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">一、基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、目录结构"><span class="nav-number">1.2.</span> <span class="nav-text">二、目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、代码解读"><span class="nav-number">1.3.</span> <span class="nav-text">三、代码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">整体结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引入文件"><span class="nav-number">1.3.2.</span> <span class="nav-text">引入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型定义"><span class="nav-number">1.3.3.</span> <span class="nav-text">类型定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量-amp-函数定义"><span class="nav-number">1.3.4.</span> <span class="nav-text">变量&amp;函数定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件编写"><span class="nav-number">1.3.5.</span> <span class="nav-text">组件编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">1.3.6.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、CSS"><span class="nav-number">1.4.</span> <span class="nav-text">四、CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、单测"><span class="nav-number">1.5.</span> <span class="nav-text">五、单测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、其他"><span class="nav-number">1.6.</span> <span class="nav-text">六、其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#omit的实现"><span class="nav-number">1.6.1.</span> <span class="nav-text">omit的实现</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -460,7 +473,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -473,7 +486,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
