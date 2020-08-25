@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>SetTimeout的第三个参数</title>
+      <link href="/2020/08/25/setTimout%E7%9A%84%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0/"/>
+      <url>/2020/08/25/setTimout%E7%9A%84%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>setTimeout的第三个参数</p></blockquote><a id="more"></a><h2 id="setTimeout的第三个参数"><a href="#setTimeout的第三个参数" class="headerlink" title="setTimeout的第三个参数"></a>setTimeout的第三个参数</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">scope.setTimeout(function[, delay, param1, param2, ...]);</span><br></pre></td></tr></table></figure><p>param1, param2, param3…作为前面回调函数的附加参数</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function">(<span class="params">a,b,c</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(a,b,c)</span><br><span class="line">&#125;, <span class="number">2000</span>, <span class="string">"my"</span>, <span class="string">"name"</span>, <span class="string">"is starsion"</span>);</span><br><span class="line"><span class="comment">//my name is starsion</span></span><br></pre></td></tr></table></figure><blockquote><p>IE9及更低的版本下是不起作用的，需要使用polyfill。</p></blockquote><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> __nativeST__ = <span class="built_in">window</span>.setTimeout;</span><br><span class="line"><span class="built_in">window</span>.setTimeout = <span class="function"><span class="keyword">function</span>(<span class="params">vCallback, nDelay <span class="regexp">/*, argumentToPass1, argumentToPass2, etc. */</span> </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> __nativeST__(vCallback <span class="keyword">instanceof</span> <span class="built_in">Function</span> ? <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        vCallback.apply(<span class="literal">null</span>, aArgs);</span><br><span class="line">    &#125; : vCallback, nDelay);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>参考文章：</p><p><a href="https://blog.csdn.net/m0_37682004/article/details/80840519" target="_blank" rel="noopener">setTimeout函数的第三个参数</a></p><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout" target="_blank" rel="noopener">MDN</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> 一些小知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Reflect</title>
       <link href="/2020/08/11/reflect/"/>
       <url>/2020/08/11/reflect/</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> es6 </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> es6 </tag>
             
         </tags>
       
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> 前端 </tag>
-            
             <tag> antd </tag>
+            
+            <tag> 前端 </tag>
             
         </tags>
       
