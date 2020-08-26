@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>instanceof</title>
+      <link href="/2020/08/26/instanceOf/"/>
+      <url>/2020/08/26/instanceOf/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>instanceof概念及手写实现</p></blockquote><a id="more"></a><h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p>用来判断一个构造函数的prototype是否存在一个示例对象的原型上</p><blockquote><p>object instanceof constructor</p></blockquote><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">make, model, year</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.make = make;</span><br><span class="line">  <span class="keyword">this</span>.model = model;</span><br><span class="line">  <span class="keyword">this</span>.year = year;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> auto = <span class="keyword">new</span> Car(<span class="string">'Honda'</span>, <span class="string">'Accord'</span>, <span class="number">1998</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(auto <span class="keyword">instanceof</span> Car);</span><br><span class="line"><span class="comment">// expected output: true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(auto <span class="keyword">instanceof</span> <span class="built_in">Object</span>);</span><br><span class="line"><span class="comment">// expected output: true</span></span><br></pre></td></tr></table></figure><p>手写instanceOf</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> instanceOf = <span class="function">(<span class="params">object, constructor</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (object) &#123;</span><br><span class="line">        <span class="keyword">if</span>(object.__proto__ === <span class="keyword">constructor</span>.prototype) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        object = object.__proto__</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> js </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Promise</title>
       <link href="/2020/08/25/promise/"/>
       <url>/2020/08/25/promise/</url>
